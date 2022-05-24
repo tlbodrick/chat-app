@@ -5,9 +5,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { toast } from 'react-toastify'
 import { useState } from 'react'
+import { db } from '../firebase.config.js'
 
 
 function SignIn() {
+
+    console.log(db)
+
     const [userData, setUserData] = useState({
         email: '',
         password: ''
@@ -30,7 +34,6 @@ function SignIn() {
         const auth = getAuth()
 
         try {
-
             const userCredential = await signInWithEmailAndPassword(auth, email, password)
 
             if (userCredential.user) {

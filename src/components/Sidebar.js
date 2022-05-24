@@ -1,7 +1,6 @@
 import SearchIcon from '@mui/icons-material/Search';
 import User from './User'
 import SidebarChannel from './SidebarChannel'
-import { useState } from 'react'
 
 function Sidebar() {
     return (
