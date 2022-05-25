@@ -1,9 +1,11 @@
 import { useContext } from 'react'
 import { Context } from '../SidebarContext'
+import { Context as ChannelContext } from '../ChannelContext'
 import MenuIcon from '@mui/icons-material/Menu';
 
 function ChatHeader() {
     const { onClick } = useContext(Context)
+    const { channelInfo } = useContext(ChannelContext)
 
     return (
         <div className="drop-shadow uppercase py-3.5 px-16 text-lg font-bold flex items-center">
@@ -12,7 +14,7 @@ function ChatHeader() {
                 onClick={onClick}>
                 <MenuIcon />
             </button>
-            <p>Front-End Developers</p>
+            <p># {channelInfo.channelName}</p>
         </div>
     )
 }

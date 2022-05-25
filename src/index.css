@@ -4,6 +4,7 @@
 
 body {
     color: white;
+    background-color: #252329;
 }
 
 .drop-shadow {
@@ -29,4 +30,20 @@ body {
         display: flex;
     }
     
+}
+
+input:focus {
+    outline: none;
+}
+
+input {
+    background: transparent;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #fff !important;
 }

@@ -1,11 +1,21 @@
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { Context } from '../PhotoContext'
+import { getAuth } from 'firebase/auth'
 
 function Profile() {
+    const { photoUrl } = useContext(Context)
+
+    const auth = getAuth()
+    const currentUser = auth.currentUser
+
+    console.log(auth.currentUser)
+
     return (
         <div className="bg-customgray h-screen p-5">
             <header className="flex justify-between">
                 <p>Back</p>
-                <img src="" alt="user" />
+                <img src={photoUrl} className="w-8 h-8 rounded-full" alt="user" />
             </header>
 
             <div className="pt-16 md:mx-20 lg:mx-60 xl:mx-80 2xl:mx-96">
@@ -24,20 +34,20 @@ function Profile() {
 
                 <div className="flex justify-between py-7 mt-16">
                     <p className="uppercase text-sm text-customlightgray">Photo</p>
-                    <img src="" alt="user" />
+                    <img src={photoUrl} className="w-10 h-10 rounded-lg" alt="user" />
                 </div>
                 <hr />
 
                 <div className="flex justify-between py-7">
                     <p className="uppercase text-sm text-customlightgray">Name</p>
-                    <p>Xanthe Neal</p>
+                    <p>{currentUser.displayName}</p>
                 </div>
                 <hr />
 
 
                 <div className="flex justify-between py-7">
                     <p className="uppercase text-sm text-customlightgray">Email</p>
-                    <p>xanthe.neal@gmail.com</p>
+                    <p>{currentUser.email}</p>
                 </div>
                 <hr />
 

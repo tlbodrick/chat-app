@@ -5,15 +5,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ContextProvider } from './SidebarContext'
+import { PhotoContextProvider } from './PhotoContext'
+import { ChannelContextProvider } from './ChannelContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ContextProvider>
+    <ChannelContextProvider>
+      <PhotoContextProvider>
+        <ContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ContextProvider>
+      </PhotoContextProvider>
+    </ChannelContextProvider>
   </React.StrictMode>
 );
 

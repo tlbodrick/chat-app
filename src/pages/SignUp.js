@@ -1,18 +1,20 @@
+import PersonIcon from '@mui/icons-material/Person';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import LockIcon from '@mui/icons-material/Lock';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Link, useNavigate } from 'react-router-dom'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { toast } from 'react-toastify'
 import { useState } from 'react'
 
 function SignUp() {
     const [userData, setUserData] = useState({
+        name: '',
         email: '',
         password: ''
     })
 
-    const { email, password } = userData
+    const { name, email, password } = userData
 
     const onChange = e => {
         setUserData(prevUserData => ({
@@ -30,9 +32,11 @@ function SignUp() {
         try {
             const auth = getAuth()
 
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+            await createUserWithEmailAndPassword(auth, email, password)
 
-            const user = userCredential.user;
+            await updateProfile(auth.currentUser, {
+                displayName: name,
+            })
 
             navigate('/')
 
@@ -50,6 +54,18 @@ function SignUp() {
                     <p className="font-bold pb-6">Join thousands of chatters now</p>
                     <form className="text-gray-500" onSubmit={onSubmit}>
                         <div className="p-3 border flex items-center rounded-md">
+                            <PersonIcon />
+                            <input
+                                type="text" placeholder="Name"
+                                className="ml-2"
+                                id="name"
+                                value={name}
+                                onChange={onChange}
+                            />
+
+                        </div>
+
+                        <div className="p-3 border flex items-center mt-2 rounded-md">
                             <LocalPostOfficeIcon />
                             <input
                                 type="email" placeholder="Email"
