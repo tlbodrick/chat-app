@@ -6,6 +6,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { toast } from 'react-toastify'
 import { useState } from 'react'
+import OAuth from '../components/OAuth'
+
 
 function SignUp() {
     const [userData, setUserData] = useState({
@@ -91,10 +93,7 @@ function SignUp() {
                     </form>
 
                     <div className="flex justify-center items-center flex-col text-gray-500">
-                        <p className="text-xs mt-8">or continue with Google</p>
-                        <button className="border rounded-full p-2 flex items-center mt-6">
-                            <GoogleIcon />
-                        </button>
+                        <OAuth />
                         <p className="text-xs mt-6">Already a member?
                         <Link to='/sign-in' className="text-blue-500"> Login</Link>
                         </p>

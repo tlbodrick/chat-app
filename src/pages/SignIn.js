@@ -1,11 +1,11 @@
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import LockIcon from '@mui/icons-material/Lock';
-import GoogleIcon from '@mui/icons-material/Google';
 import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { toast } from 'react-toastify'
 import { useState } from 'react'
 import { db } from '../firebase.config.js'
+import OAuth from '../components/OAuth'
 
 
 function SignIn() {
@@ -79,10 +79,7 @@ function SignIn() {
                     </form>
 
                     <div className="flex justify-center items-center flex-col text-gray-500">
-                        <p className="text-xs mt-8">or continue with Google</p>
-                        <button className="border rounded-full p-2 flex items-center mt-6">
-                            <GoogleIcon />
-                        </button>
+                        <OAuth />
                         <p className="text-xs mt-6">Don't have an account yet?
                         <Link to='/sign-up' className="text-blue-500"> Register</Link>
                         </p>
@@ -90,7 +87,7 @@ function SignIn() {
 
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
